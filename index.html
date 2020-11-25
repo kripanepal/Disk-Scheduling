@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="js.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disk Scheduling</title>
+</head>
+
+<body>
+    <form>
+        Initial Head Position: <input id="head" value=0 />
+        <br />
+        <br />
+
+        <div>
+            <table id='timesTable'>
+                <tr>
+                    <th>Arrival time</th>
+                    <th>Disk Track Requests</th>
+                </tr>
+                <tr>
+                    <td contenteditable='true'>0</td>
+                    <td contenteditable='true'>16,947,683,789</td>
+                </tr>
+                <tr>
+                    <td contenteditable='true'>3</td>
+                    <td contenteditable='true'>948,185,17,186</td>
+                </tr>
+                <tr>
+                    <td contenteditable='true'>6</td>
+                    <td contenteditable='true'>590,18,790,591</td>
+                </tr>
+            </table>
+        </div>
+
+        <br />
+        <br />
+        <label>Type:</label>
+
+        <select id="type">
+            <option value=fcfs>First Come First Served </option>
+            <option value=sstf>Shortest Seek Time First </option>
+            <option value=sl>Scan/Look</option>
+            <option value=csl>Circular Scan/Look</option>
+
+        </select>
+
+        <button name="data" type="button" onclick="show()">Calculate</button>
+    </form>
+</body>
+
+</html>
