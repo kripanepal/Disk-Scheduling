@@ -11,18 +11,24 @@ const show = () => {
     type = document.getElementById("type").value
     headPosition = document.getElementById("head").value
     initialHeadPosition = headPosition
-
-
     const table = document.getElementById('timesTable')
     const rows = (table.children[0].rows)
+    console.log(table)
     for (i = 1; i < rows.length; i++) {
         const time = parseInt(rows[i].children[0].innerHTML)
+
+        console.log(rows[i].children[0], i)
         const value = formatData((rows[i].children[1].innerHTML))
         data[time] = value
     }
+    console.log(data)
     calculate()
-    document.getElementById('results').innerHTML = trace
-    console.log(sum_adjacent_difference(trace) + trace[0])
+
+    const resultDiv = document.getElementById('results')
+    resultDiv.innerHTML = "Sequence: " + trace
+    const timeDiv = document.getElementById('totalTime')
+    timeDiv.innerHTML = "Total Time: " + (sum_adjacent_difference(trace) + trace[0])
+    createGraph()
 
 }
 
@@ -123,4 +129,26 @@ function sum_adjacent_difference(arr) {
         result += Math.abs(arr[i] - arr[i - 1]);
     }
     return result;
+}
+
+const addRow = () => {
+    var tbodyRef = document.getElementById('timesTable').getElementsByTagName('tbody')[0];
+    var newRow = tbodyRef.insertRow();
+    var newCell = newRow.insertCell();
+    var newText = document.createTextNode('0');
+    newCell.appendChild(newText);
+    newCell.setAttribute('contenteditable', true)
+    var newCell = newRow.insertCell();
+    newCell.setAttribute('contenteditable', true)
+    var newText = document.createTextNode('1,2,3');
+    newCell.appendChild(newText);
+    return false
+
+}
+function deleterow(tableID) {
+    var table = document.getElementById("timesTable");
+    var rowCount = table.rows.length;
+
+    table.deleteRow(rowCount - 1);
+    return false
 }

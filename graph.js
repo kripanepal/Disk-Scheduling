@@ -18,7 +18,6 @@ const createData = (data) => {
 
 
 const make = (ctx, finalData) => {
-    console.log(finalData)
     var scatterChart = new Chart(ctx, {
 
         type: 'line',
@@ -47,7 +46,8 @@ const make = (ctx, finalData) => {
             },
             tooltips: {
                 bodyFontSize: 0
-            }
+            },
+            maintainAspectRatio: false
         }
     });
 }

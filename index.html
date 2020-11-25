@@ -13,53 +13,68 @@
 </head>
 
 <body>
-    <form>
-        Initial Head Position: <input id="head" value=0 />
-        <br />
-        <br />
+    <div class='parent'>
+        <div class='form'>
+            <form>
+                Initial Head Position: <input id="head" value=0 />
+                <br />
+                <br />
 
-        <div>
-            <table id='timesTable'>
-                <tr>
-                    <th>Arrival time</th>
-                    <th>Disk Track Requests</th>
-                </tr>
-                <tr>
-                    <td contenteditable='true'>0</td>
-                    <td contenteditable='true'>16,947,683,789,948,185,17,186,590,18,790,591</td>
-                </tr>
-                <tr>
-                    <td contenteditable='true'>3</td>
-                    <td contenteditable='true'>948,185,17,186</td>
-                </tr>
-                <tr>
-                    <td contenteditable='true'>6</td>
-                    <td contenteditable='true'>590,18,790,591</td>
-                </tr>
-            </table>
+                <div>
+                    <table id='timesTable'>
+                        <tr>
+                            <th>Arrival time</th>
+                            <th>Disk Track Requests</th>
+                        </tr>
+                        <tr>
+                            <td contenteditable='true'>0</td>
+                            <td contenteditable='true'>16,947,683,789</td>
+                        </tr>
+                        <tr>
+                            <td contenteditable='true'>3</td>
+                            <td contenteditable='true'>948,185,17,186</td>
+                        </tr>
+                        <tr>
+                            <td contenteditable='true'>6</td>
+                            <td contenteditable='true'>590,18,790,591</td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <button onclick=" return addRow()">Add Row</button>
+                <button onclick=" return deleterow()">Remove Last Row</button>
+                <br />
+                <br />
+                <label>Type:</label>
+
+                <select id="type">
+                    <option value=fcfs>First Come First Served </option>
+                    <option value=sstf>Shortest Seek Time First </option>
+                    <option value=sl>Scan/Look</option>
+                    <option value=csl>Circular Scan/Look</option>
+
+                </select>
+
+                <button name="data" type="button" onclick="show()">Calculate</button>
+
+                <br />
+                <br />
+                <div id='results'></div>
+                <br />
+                <div id='totalTime'></div>
+
+
+                <script src="graph.js"></script>
+            </form>
         </div>
 
-        <br />
-        <br />
-        <label>Type:</label>
+        <div class='chartContainer'>
 
-        <select id="type">
-            <option value=fcfs>First Come First Served </option>
-            <option value=sstf>Shortest Seek Time First </option>
-            <option value=sl>Scan/Look</option>
-            <option value=csl>Circular Scan/Look</option>
+            <canvas id="myChart"></canvas>
+        </div>
 
-        </select>
+    </div>
 
-        <button name="data" type="button" onclick="show()">Calculate</button>
-        <button name="data" type="button" onclick="createGraph()">Show Graph</button>
-        <br />
-        <br />
-        <div id='results'> </div>
-        <canvas id="myChart"></canvas>
-
-        <script src="graph.js"></script>
-    </form>
 </body>
 
 </html>
