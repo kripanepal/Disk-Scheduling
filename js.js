@@ -21,51 +21,23 @@ const show = () => {
         data[time] = value
     }
     calculate()
-    console.log(trace)
+    document.getElementById('results').innerHTML = trace
     console.log(sum_adjacent_difference(trace) + trace[0])
 
 }
 
 const formatData = (value) => {
     while (value.includes(' ')) {
-        value = string.replace(" ", ",")
+        value = value.replace(" ", ",")
     }
     return value.split`,`.map((x) => parseInt(x));
 
 }
 
+
+
+
 const calculate = () => {
-    switch (type) {
-        case type = 'fcfs':
-            fcfs()
-            break;
-        case type = 'sstf':
-            sstf()
-            break;
-        case type = 'sl':
-            sl()
-            break;
-        case type = 'csl':
-
-            csl()
-            break;
-
-        default:
-            break;
-    }
-}
-
-const fcfs = () => {
-    const keys = (Object.keys(data));
-    keys.forEach(element => {
-        data[element].forEach(track => {
-            headPosition = track
-            trace.push(track)
-        });
-    });
-
-}
-const sstf = () => {
     const keys = (Object.keys(data));
     var totalTime = 0
     var tempArray = [];
@@ -82,33 +54,27 @@ const sstf = () => {
         else {
             totalTime++
         }
-        tempArray.sort(function (a, b) { return a - b });
-        const track = trace.length === 0 ? tempArray.shift() : findNext(tempArray)
+        if (type !== 'fcfs') {
 
-        headPosition = track
-        trace.push(track)
-    }
-
-}
-const sl = () => {
-    const keys = (Object.keys(data));
-    var totalTime = 0
-    var tempArray = [];
-    var count = 0
-    while ((count != keys.length) || tempArray.length != 0) {
-
-        if (data[totalTime]) {
-            data[totalTime].forEach(element => {
-                tempArray.push(element)
-            });
-            count++
-            totalTime++
+            tempArray.sort(function (a, b) { return a - b });
         }
-        else {
-            totalTime++
+        var track
+        if (type === 'sl') {
+            track = trace.length === 0 ? tempArray.shift() : findNext(tempArray, 'right')
         }
-        tempArray.sort(function (a, b) { return a - b });
-        const track = trace.length === 0 ? tempArray.shift() : findNext(tempArray, 'right')
+
+        if (type === 'csl') {
+            track = trace.length === 0 ? tempArray.shift() : findNext(tempArray, 'right', 'reset')
+
+        }
+
+        if (type === 'sstf') {
+            track = trace.length === 0 ? tempArray.shift() : findNext(tempArray)
+        }
+        if (type === 'fcfs') {
+
+            track = tempArray.shift()
+        }
 
         headPosition = track
         trace.push(track)
@@ -116,37 +82,12 @@ const sl = () => {
 
 }
 
-const csl = () => {
-    const keys = (Object.keys(data));
-    var totalTime = 0
-    var tempArray = [];
-    var count = 0
-    while ((count != keys.length) || tempArray.length != 0) {
-
-        if (data[totalTime]) {
-            data[totalTime].forEach(element => {
-                tempArray.push(element)
-            });
-            count++
-            totalTime++
-        }
-        else {
-            totalTime++
-        }
-        tempArray.sort(function (a, b) { return a - b });
-        const track = trace.length === 0 ? tempArray.shift() : findNext(tempArray, 'right', 'reset')
-        headPosition = track
-        trace.push(track)
-    }
-
-}
-
-const findNext = (tempArray, type, method) => {
+const findNext = (tempArray, way, method) => {
     if (tempArray.length === 1) {
         return tempArray.shift();
     }
     var closest;
-    if (type === 'right') {
+    if (way === 'right') {
         for (i = 0; i < tempArray.length; i++) {
 
             if (tempArray[i] > headPosition) {

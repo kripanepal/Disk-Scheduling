@@ -3,6 +3,9 @@
 
 <head>
     <script src="js.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+        integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +26,7 @@
                 </tr>
                 <tr>
                     <td contenteditable='true'>0</td>
-                    <td contenteditable='true'>16,947,683,789</td>
+                    <td contenteditable='true'>16,947,683,789,948,185,17,186,590,18,790,591</td>
                 </tr>
                 <tr>
                     <td contenteditable='true'>3</td>
@@ -49,6 +52,13 @@
         </select>
 
         <button name="data" type="button" onclick="show()">Calculate</button>
+        <button name="data" type="button" onclick="createGraph()">Show Graph</button>
+        <br />
+        <br />
+        <div id='results'> </div>
+        <canvas id="myChart"></canvas>
+
+        <script src="graph.js"></script>
     </form>
 </body>
 
