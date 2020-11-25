@@ -47,7 +47,7 @@ const make = (ctx, finalData) => {
             tooltips: {
                 bodyFontSize: 0
             },
-            maintainAspectRatio: false
+            maintainAspectRatio: false, responsive: true
         }
     });
 }
